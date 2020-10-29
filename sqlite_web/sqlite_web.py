@@ -87,6 +87,8 @@ app.config.from_object(__name__)
 dataset = None
 migrator = None
 
+
+
 #
 # Database metadata objects.
 #
@@ -788,7 +790,7 @@ def install_auth_handler(password):
             session['next_url'] = request.base_url
             return redirect(url_for('login'))
 
-def initialize_app(filename, read_only=False, password=None, url_prefix=None):
+def initialize_app(filename='/var/www/html/db/request.db', read_only=False, password=None, url_prefix=None):
     global dataset
     global migrator
 
@@ -849,6 +851,7 @@ def main():
 
     app.run(host=options.host, port=options.port, debug=options.debug)
 
+initialize_app()
 
 if __name__ == '__main__':
     main()
